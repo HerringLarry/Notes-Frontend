@@ -1,0 +1,48 @@
+
+h3 {
+    text-align: center;
+}
+div{
+    font-family: 'Courier New', Courier, monospace;
+}
+button {
+    background-color: blue; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+button:hover{
+    background-color: green;
+}
+
+.note-taker {
+    border-width:1px
+}
+
+.contain {
+    margin: auto;
+    width: 900px;
+    flex: 6;
+}
+
+.note-taker {
+    width: calc(100% - 70px);
+}
+
+.left{
+    position: relative;
+    top: 30%;
+    transform: translateY(-110%);
+}
+
+.right{
+    position: relative;
+    top: 30%;
+    transform: translateY(-110%);
+}
+

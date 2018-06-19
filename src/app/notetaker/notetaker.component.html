@@ -1,0 +1,8 @@
+<div>
+  <h3 class="header">Page Number: {{this.currentPageCount}}</h3>
+  <div class="contain">
+    <button class="left" (click) = "getPrevious()" [disabled]="currentPageCount == 1"> << </button>
+    <textarea class="note-taker" [(ngModel)] = "currentNote" rows="4" cols="50"></textarea>
+    <button class="right" (click) = "getNext()" [disabled] = "currentPageCount >= MAXPAGECOUNT"> >> </button>
+  </div>
+</div>
