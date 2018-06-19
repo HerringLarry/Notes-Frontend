@@ -35,7 +35,7 @@ export class NoteTakerComponent implements OnInit {
 
   getPage( page: number ) {
     this._noteServer.getPage( this.currentPageCount ).subscribe((res) => {
-      this.currentNote = res;
+      this.currentNote = res.content;
     });
   }
 

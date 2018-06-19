@@ -2,9 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { CreatePostDto } from './create-posts.dto';
-import * as mongoose from 'mongoose';
-
-
 @Injectable()
 
 export class NoteService {
@@ -16,7 +13,7 @@ export class NoteService {
     this.http.get( 'http://localhost:3000/posts/get/' + page ).subscribe( res => { // cleanup
       if ( res ) {
         console.log(res);
-        pageSubject.next( String( res ) );
+        pageSubject.next( res );
       }
       pageSubject.complete();
     }
@@ -29,8 +26,7 @@ export class NoteService {
     const send = new CreatePostDto();
     send.content = currentNote;
     send.page = page;
-    console.log(send);
-
-    this.http.post( 'http://localhost:3000/posts/post', send).subscribe(res => {console.log(res);});
-  }
+    this.http.post( 'http://localhost:3000/posts/post', send).subscribe(res => {
+     // console.log(res);
+  });
 }
