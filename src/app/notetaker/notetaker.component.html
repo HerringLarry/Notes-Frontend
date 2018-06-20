@@ -5,4 +5,8 @@
     <textarea class="note-taker" [(ngModel)] = "currentNote" rows="4" cols="50"></textarea>
     <button class="right" (click) = "getNext()" [disabled] = "currentPageCount >= MAXPAGECOUNT"> >> </button>
   </div>
+  <div class="save">
+    <button (click) = "save()"> Save </button>
+  </div>
+  <div>Error: <div class="error">{{this.error}}</div></div>
 </div>

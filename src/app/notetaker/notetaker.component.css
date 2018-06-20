@@ -24,6 +24,10 @@ button:hover{
     border-width:1px
 }
 
+.error {
+    color: red;
+}
+
 .contain {
     margin: auto;
     width: 900px;
@@ -44,5 +48,9 @@ button:hover{
     position: relative;
     top: 30%;
     transform: translateY(-110%);
+}
+
+.save{
+    text-align: center;
 }
 

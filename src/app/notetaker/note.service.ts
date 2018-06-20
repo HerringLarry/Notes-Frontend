@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { CreatePostDto } from './create-posts.dto';
 @Injectable()
 
@@ -8,25 +8,14 @@ export class NoteService {
 
   constructor(private http: HttpClient) {}
 
-  getPage( page: number ): Subject<string> {
-    const pageSubject: Subject<string> = new Subject();
-    this.http.get( 'http://localhost:3000/posts/get/' + page ).subscribe( res => { // cleanup
-      if ( res ) {
-        console.log(res);
-        pageSubject.next( res );
-      }
-      pageSubject.complete();
-    }
-    );
-    return pageSubject;
-
+  getPage( page: number ): Observable<object> {
+    return this.http.get( 'http://localhost:3002/posts/get/' + page );
   }
 
-  save( currentNote: string, page: number ): void {
+  save( currentNote: string, page: number ): Observable<object> {
     const send = new CreatePostDto();
     send.content = currentNote;
     send.page = page;
-    this.http.post( 'http://localhost:3000/posts/post', send).subscribe(res => {
-     // console.log(res);
-  });
+    return this.http.post( 'http://localhost:3002/posts/post', send);
+  }
 }
