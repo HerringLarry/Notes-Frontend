@@ -1,9 +1,10 @@
 
 h3 {
     text-align: center;
+    font-family: 'Source Sans Pro', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 div{
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Source Sans Pro', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 button {
     background-color: blue; /* Green */

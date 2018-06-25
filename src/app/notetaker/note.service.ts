@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { CreatePostDto } from './create-posts.dto';
 @Injectable()

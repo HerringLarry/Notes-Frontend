@@ -1,4 +1,5 @@
 <div>
+  <button routerLink="/login" (click) = "logout()">Logout</button>
   <h3 class="header">Page Number: {{this.currentPageCount}}</h3>
   <div class="contain">
     <button class="left" (click) = "getPrevious()" [disabled]="currentPageCount == 1"> << </button>
@@ -8,5 +9,5 @@
   <div class="save">
     <button (click) = "save()"> Save </button>
   </div>
-  <div>Error: <div class="error">{{this.error}}</div></div>
+  <div>Error: <div class="error">{{this.error}}</div></div> 
 </div>

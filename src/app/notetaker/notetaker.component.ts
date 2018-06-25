@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NoteService } from '../notetaker/note.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notetaker',
@@ -14,13 +15,20 @@ export class NoteTakerComponent implements OnInit {
   MAXPAGECOUNT = 5;
   error = '';
 
-  constructor( private _noteServer: NoteService ) { }
+  constructor( private _noteServer: NoteService, private router: Router ) { }
 
   ngOnInit() {
     this.getPage( this.currentPageCount );
    }
 
+  logout() {
+    window.sessionStorage.removeItem('token');
+    this.router.navigate(['./login']);
+
+  }
+
   getNext() {
+    console.log(window.sessionStorage.getItem('token'));
     this.currentPageCount++;
     this.currentNote = '';
     this.getPage( this.currentPageCount );
@@ -34,7 +42,7 @@ export class NoteTakerComponent implements OnInit {
 
   getPage( page: number ) {
     this.error = '';
-    this._noteServer.getPage( this.currentPageCount ).subscribe( res => this.currentNote = res,
+    this._noteServer.getPage( this.currentPageCount ).subscribe( res => this.currentNote = res.content,
                                                                 error => this.errorHandler(error) );
   }
 
@@ -45,7 +53,6 @@ export class NoteTakerComponent implements OnInit {
   }
 
   errorHandler( error ){
-    console.log(error.statusText)
     switch ( error.statusText ) {
       case 'Unknown Error': {
         this.error = 'Server Down';
@@ -54,6 +61,10 @@ export class NoteTakerComponent implements OnInit {
       case 'Not Found':
       case 'Not Modified': {
         this.error = 'Database Down';
+        break;
+      }
+      case 'Unauthorized': {
+        this.error = 'Unauthorized, Please Login';
         break;
       }
       default: {
