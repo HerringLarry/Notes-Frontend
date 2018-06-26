@@ -16,17 +16,33 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  handleLogin(res) {
+    console.log(res);
+    if (res.hasOwnProperty('token')) {
+      window.sessionStorage.setItem('token', res.token + '');
+      this.router.navigate(['./notes']);
+    }
+  }
+
+  handleError(error){
+    if (error.statusText === 'Not Found') {
+      alert('User Not Found');
+    } else {
+      alert('Issue With Server, Please Try Again Later');
+    }
+  }
   login() {
     window.sessionStorage.removeItem('token');
-    this._loginServer.login(this.enteredUsername).subscribe(res => {
-      window.sessionStorage.setItem('token', res.token + '');
-      this.router.navigate(['./notes'])
-    },
-      error => console.log(error) );
+    this._loginServer.login(this.enteredUsername).subscribe(res => this.handleLogin(res),
+                                                            error => this.handleError(error) );
   }
 
   signUp() {
-    this._loginServer.signUp(this.enteredUsername).subscribe(res => this.login(),
-                                                             error => console.log(error) );
+    if (this.enteredUsername.length > 0) {
+      this._loginServer.signUp(this.enteredUsername).subscribe(res => this.login(),
+                                                              error => this.handleError(error) );
+    } else {
+      alert('Please Enter Valid Username');
+    }
   }
 }

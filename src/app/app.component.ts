@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+declare function require(path: string);
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'the Notetaker!';
+  fullPath = require('../assets/notepad.jpg');
 }
